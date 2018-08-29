@@ -1,0 +1,17 @@
+module MustBeOrdered
+  class OrderNotApplied < StandardError; end
+
+  module RelationCheck
+
+    private
+
+    def exec_queries(&block)
+      if klass.__must_be_ordered__? && order_values.empty?
+        raise OrderNotApplyed
+      end
+      super
+    end
+  end
+end
+
+ActiveRecord::Relation.prepend MustBeOrdered::RelationCheck
