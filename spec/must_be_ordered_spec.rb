@@ -59,4 +59,11 @@ RSpec.describe MustBeOrdered do
       end
     end
   end
+
+  # TODO: DELETE ME
+  it 'sandbox' do
+    MustBeOrdered.must_be_ordered_logger = true
+    Item.must_be_ordered
+    Item.all.to_a
+  end
 end

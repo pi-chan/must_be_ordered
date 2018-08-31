@@ -2,6 +2,7 @@ require "active_record"
 require 'uniform_notifier'
 
 require "must_be_ordered/version"
+require "must_be_ordered/stack_trace_filter"
 require "must_be_ordered/relation_check"
 
 module MustBeOrdered
