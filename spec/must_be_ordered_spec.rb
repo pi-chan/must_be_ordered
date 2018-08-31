@@ -1,4 +1,9 @@
 RSpec.describe MustBeOrdered do
+  before do
+    MustBeOrdered.enabled = true
+  end
+
+
   it "has a version number" do
     expect(MustBeOrdered::VERSION).not_to be nil
   end
@@ -10,6 +15,10 @@ RSpec.describe MustBeOrdered do
     end
 
     context 'when enabled is not set' do
+      before do
+        MustBeOrdered.enabled = false
+      end
+
       it 'not to raise error when not ordered' do
         expect{ Item.all.to_a }.not_to raise_error
       end
@@ -20,7 +29,6 @@ RSpec.describe MustBeOrdered do
 
     context 'when enabled is set to true' do
       before do
-        MustBeOrdered.enabled = true
         MustBeOrdered.raise = true
       end
       it 'raise error when not ordered' do
@@ -34,7 +42,6 @@ RSpec.describe MustBeOrdered do
 
   describe '.raise' do
     before do
-      MustBeOrdered.enabled = true
       Item.must_be_ordered
     end
     context 'raiseオプション指定されている' do
@@ -62,7 +69,6 @@ RSpec.describe MustBeOrdered do
 
   # TODO: DELETE ME
   it 'sandbox' do
-    MustBeOrdered.enabled = true
     MustBeOrdered.must_be_ordered_logger = true
     Item.must_be_ordered
     Item.all.to_a

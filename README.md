@@ -23,11 +23,12 @@ Configuration:
 
 ```ruby
 # config/initializers/must_be_ordered.rb
-
 MustBeOrdered.enabled = !Rails.env.production?
 
 # choose action you need
 MustBeOrdered.raise = true
+MustBeOrdered.must_be_ordered_logger = true
+MustBeOrdered.rails_logger = true
 ```
 
 Models:
@@ -35,29 +36,6 @@ Models:
 ```ruby
 class Item < ActoveRecord::Base
   must_be_ordered
-end
-```
-
-## Configuration
-
-MustBeOrdered won't do ANYTHING unless you tell it to explicitly. Append to
-`config/environments/development.rb` initializer with the following code:
-
-```ruby
-config.after_initialize do
-  MustBeOrdered.enabled = true
-  MustBeOrdered.sentry = true
-  MustBeOrdered.must_be_ordered_logger = true
-  MustBeOrdered.xmpp = { :account  => 'bullets_account@jabber.org',
-                  :password => 'bullets_password_for_jabber',
-                  :receiver => 'your_account@jabber.org',
-                  :show_online_status => true }
-  MustBeOrdered.rails_logger = true
-  MustBeOrdered.honeybadger = true
-  MustBeOrdered.bugsnag = true
-  MustBeOrdered.airbrake = true
-  MustBeOrdered.rollbar = true
-  MustBeOrdered.slack = { webhook_url: 'http://some.slack.url', channel: '#default', username: 'notifier' }
 end
 ```
 
