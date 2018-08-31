@@ -1,4 +1,5 @@
 require 'bundler/setup'
+require 'pry-byebug'
 require 'must_be_ordered'
 
 MODELS = File.join(File.dirname(__FILE__), 'models')
