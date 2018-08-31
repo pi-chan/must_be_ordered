@@ -25,7 +25,7 @@ module MustBeOrdered
     def must_be_ordered_logger=(active)
       if active
         require 'fileutils'
-        root_path = (rails? ? Rails.root.to_s : Dir.pwd).to_s
+        root_path = (defined?(::Rails) ? Rails.root.to_s : Dir.pwd).to_s
         FileUtils.mkdir_p(root_path + '/log')
         must_be_ordered_log_file = File.open("#{root_path}/log/must_be_ordered.log", 'a+')
         must_be_ordered_log_file.sync = true

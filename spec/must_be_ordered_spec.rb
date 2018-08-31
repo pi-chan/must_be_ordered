@@ -33,6 +33,7 @@ RSpec.describe MustBeOrdered do
 
   describe 'Exception' do
     before do
+      MustBeOrdered.enabled = true
       Item.must_be_ordered
     end
     context 'raiseオプション指定されている' do
