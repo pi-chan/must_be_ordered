@@ -1,3 +1,5 @@
+require "active_record"
+
 require "must_be_ordered/version"
 require "must_be_ordered/relation_check"
 
