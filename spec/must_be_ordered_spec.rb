@@ -21,6 +21,7 @@ RSpec.describe MustBeOrdered do
     context 'when enabled is set to true' do
       before do
         MustBeOrdered.enabled = true
+        MustBeOrdered.raise = true
       end
       it 'raise error when not ordered' do
         expect{ Item.all.to_a }.to raise_error MustBeOrdered::OrderNotApplied
@@ -31,21 +32,30 @@ RSpec.describe MustBeOrdered do
     end
   end
 
-  describe 'Exception' do
+  describe '.raise' do
     before do
       MustBeOrdered.enabled = true
       Item.must_be_ordered
     end
     context 'raiseオプション指定されている' do
       before { MustBeOrdered.raise = true }
-      it "order無しでExceptionが発生すること" do
+      it 'allでExceptionが発生すること' do
         expect{ Item.all.to_a }.to raise_error MustBeOrdered::OrderNotApplied
+      end
+      it 'selectでExceptionが発生すること' do
+        expect{ Item.select('id').to_a }.to raise_error MustBeOrdered::OrderNotApplied
+      end
+      it 'select + orderでExceptionが発生しないこと' do
+        expect{ Item.select('id').order("id").to_a }.not_to raise_error
       end
     end
     context 'raiseオプション指定されていない' do
       before { MustBeOrdered.raise = false }
       it "order無しでExceptionが発生しないこと" do
         expect{ Item.all.to_a }.not_to raise_error
+      end
+      it do
+        expect{ Item.select('id').to_a }.not_to raise_error
       end
     end
   end
