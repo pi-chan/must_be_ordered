@@ -1,9 +1,12 @@
 require "active_record"
+require 'uniform_notifier'
 
 require "must_be_ordered/version"
 require "must_be_ordered/relation_check"
 
 module MustBeOrdered
+  UniformNotifier.raise = MustBeOrdered::OrderNotApplied
+
   class << self
     def enabled=(value)
       @enabled = value
