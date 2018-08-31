@@ -1,9 +1,13 @@
 require "active_record"
+require 'uniform_notifier'
 
 require "must_be_ordered/version"
 require "must_be_ordered/relation_check"
 
 module MustBeOrdered
+
+  UniformNotifier.raise = MustBeOrdered::OrderNotApplied
+
   def self.extended(klass)
     klass.class_eval do
       class_attribute :__must_be_ordered__

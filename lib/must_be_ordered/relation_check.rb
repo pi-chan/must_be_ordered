@@ -7,7 +7,9 @@ module MustBeOrdered
 
     def exec_queries(&block)
       if klass.__must_be_ordered__? && order_values.empty?
-        raise MustBeOrdered::OrderNotApplied
+        UniformNotifier.active_notifiers.each do |notifier|
+          notifier.out_of_channel_notify('order not applied')
+        end
       end
       super
     end
