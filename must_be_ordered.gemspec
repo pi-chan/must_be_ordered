@@ -6,10 +6,10 @@ require "must_be_ordered/version"
 Gem::Specification.new do |spec|
   spec.name          = "must_be_ordered"
   spec.version       = MustBeOrdered::VERSION
-  spec.authors       = ["pi-chan"]
+  spec.authors       = ["pi-chan", "nof"]
   spec.email         = ["hiromasa.ohno.1007@gmail.com"]
 
-  spec.summary       = "ActiveRecord extension to check if ORDER BY contains"
+  spec.summary       = "`must_be_ordered` gem is to warn or raise error if `order` is not set to ActiveRecord's Relation."
   spec.description   = ""
   spec.homepage      = "https://github.com/pi-chan/must_be_ordered"
   spec.license       = "MIT"
