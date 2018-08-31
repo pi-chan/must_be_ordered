@@ -2,7 +2,7 @@ PATH
   remote: .
   specs:
     must_be_ordered (0.1.0)
-      activerecord (> 5.0)
+      activerecord (>= 5.0)
       uniform_notifier
 
 GEM
@@ -58,6 +58,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  activerecord (~> 5.2)
   bundler (~> 1.16)
   must_be_ordered!
   pry-byebug
