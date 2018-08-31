@@ -12,7 +12,7 @@ module MustBeOrdered
       if klass.__must_be_ordered__? && order_values.empty?
         UniformNotifier.active_notifiers.each do |notifier|
           trace = caller_in_project.join("\n")
-          notifier.out_of_channel_notify("order not applied #{klass.to_s}:\n#{trace}\n")
+          notifier.out_of_channel_notify("MustBeOrdered order not applied #{klass.to_s}:\n#{trace}")
         end
       end
       super

@@ -33,10 +33,7 @@ MustBeOrdered won't do ANYTHING unless you tell it to explicitly. Append to
 config.after_initialize do
   MustBeOrdered.enabled = true
   MustBeOrdered.sentry = true
-  MustBeOrdered.alert = true
   MustBeOrdered.must_be_ordered_logger = true
-  MustBeOrdered.console = true
-  MustBeOrdered.growl = true
   MustBeOrdered.xmpp = { :account  => 'bullets_account@jabber.org',
                   :password => 'bullets_password_for_jabber',
                   :receiver => 'your_account@jabber.org',
@@ -46,9 +43,6 @@ config.after_initialize do
   MustBeOrdered.bugsnag = true
   MustBeOrdered.airbrake = true
   MustBeOrdered.rollbar = true
-  MustBeOrdered.add_footer = true
-  MustBeOrdered.stacktrace_includes = [ 'your_gem', 'your_middleware' ]
-  MustBeOrdered.stacktrace_excludes = [ 'their_gem', 'their_middleware', ['my_file.rb', 'my_method'], ['my_file.rb', 16..20] ]
   MustBeOrdered.slack = { webhook_url: 'http://some.slack.url', channel: '#default', username: 'notifier' }
 end
 ```
