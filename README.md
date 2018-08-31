@@ -32,7 +32,7 @@ MustBeOrdered.raise = true
 
 Models:
 
-```
+```ruby
 class Item < ActoveRecord::Base
   must_be_ordered
 end
