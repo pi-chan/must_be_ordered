@@ -30,5 +30,6 @@ RSpec.configure do |config|
 
   config.before do
     Support::Database.clear_db
+    Support::Database.seed_db
   end
 end

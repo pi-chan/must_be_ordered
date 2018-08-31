@@ -7,6 +7,9 @@ module Support
     end
 
     def seed_db
+      Item.create(position: 1)
+      Item.create(position: 2)
+      Item.create(position: 3)
     end
 
     def setup_db

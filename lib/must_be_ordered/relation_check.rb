@@ -7,7 +7,7 @@ module MustBeOrdered
 
     def exec_queries(&block)
       if klass.__must_be_ordered__? && order_values.empty?
-        raise OrderNotApplyed
+        raise MustBeOrdered::OrderNotApplied
       end
       super
     end
