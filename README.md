@@ -2,9 +2,7 @@
 
 [![Build Status](https://travis-ci.org/pi-chan/must_be_ordered.svg?branch=master)](https://travis-ci.org/pi-chan/must_be_ordered)
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/must_be_ordered`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+`must_be_ordered` gem is to warn or raise error if `order` is not set to ActiveRecord's Relation.
 
 ## Installation
 
@@ -18,13 +16,27 @@ And then execute:
 
     $ bundle
 
-Or install it yourself as:
-
-    $ gem install must_be_ordered
 
 ## Usage
 
-TODO: Write usage instructions here
+Configuration:
+
+```ruby
+# config/initializers/must_be_ordered.rb
+
+MustBeOrdered.enabled = !Rails.env.production?
+
+# choose action you need
+MustBeOrdered.raise = true
+```
+
+Models:
+
+```
+class Item < ActoveRecord::Base
+  must_be_ordered
+end
+```
 
 ## Configuration
 
@@ -49,15 +61,9 @@ config.after_initialize do
 end
 ```
 
-## Development
-
-After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
-
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
-
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/xoyip/must_be_ordered.
+Bug reports and pull requests are welcome on GitHub at https://github.com/pi-chan/must_be_ordered.
 
 ## License
 
