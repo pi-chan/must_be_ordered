@@ -5,15 +5,32 @@ require "must_be_ordered/version"
 require "must_be_ordered/relation_check"
 
 module MustBeOrdered
-  UniformNotifier.raise = MustBeOrdered::OrderNotApplied
-
   class << self
+    available_notifiers = UniformNotifier::AVAILABLE_NOTIFIERS.map { |notifier| "#{notifier}=" }
+    available_notifiers << { to: UniformNotifier }
+    delegate(*available_notifiers)
+
     def enabled=(value)
       @enabled = value
     end
 
     def enabled?
       !!@enabled
+    end
+
+    def raise=(should_raise)
+      UniformNotifier.raise = (should_raise ? MustBeOrdered::OrderNotApplied : false)
+    end
+
+    def must_be_ordered_logger=(active)
+      if active
+        require 'fileutils'
+        root_path = (rails? ? Rails.root.to_s : Dir.pwd).to_s
+        FileUtils.mkdir_p(root_path + '/log')
+        must_be_ordered_log_file = File.open("#{root_path}/log/must_be_ordered.log", 'a+')
+        must_be_ordered_log_file.sync = true
+        UniformNotifier.customized_logger = must_be_ordered_log_file
+      end
     end
   end
 
