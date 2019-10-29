@@ -3,7 +3,6 @@ language: ruby
 rvm:
   - 2.6.5
   - 2.5.7
-  - 2.4.9
 before_install: gem install bundler -v 1.16.2
 gemfile:
   - Gemfile.rails-6.0
